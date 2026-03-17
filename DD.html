@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Princy ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #ff6a88, #ff99ac);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container { margin-top: 80px; }
+
+h1 { font-size: 2.8em; }
+
+p { font-size: 1.3em; }
+
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.main-btn {
+  background: white;
+  color: #ff4d6d;
+}
+
+.yes { background: #00ffcc; }
+
+.no {
+  background: red;
+  color: white;
+  position: absolute;
+}
+
+#proposal, #final { display: none; }
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: float 5s linear;
+}
+
+@keyframes float {
+  from {transform: translateY(0);}
+  to {transform: translateY(-800px);}
+}
+</style>
+
+</head>
+<body>
+
+<!-- 🎂 Birthday Song -->
+<audio id="bday" preload="auto">
+  <source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 💖 Romantic Song -->
+<audio id="music" loop preload="auto">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<h1>🎂 Happy Birthday Princy 🎂</h1>
+
+<p>
+Aaj ka din special hai… 💖<br>
+Sirf tumhare liye ❤️
+</p>
+
+<button class="main-btn" onclick="start()">Start Surprise 💖</button>
+
+<div id="proposal">
+  <h2>💍 Will you be mine forever?</h2>
+  <button class="yes" onclick="yes()">YES ❤️</button>
+  <button class="no" id="noBtn">NO 😢</button>
+</div>
+
+<div id="final"></div>
+
+</div>
+
+<script>
+
+function start() {
+  const bday = document.getElementById("bday");
+  const music = document.getElementById("music");
+
+  // 🔊 Volume high
+  bday.volume = 1.0;
+  music.volume = 1.0;
+
+  // 🎂 Play birthday first
+  bday.play();
+
+  // After 10 sec → romantic song
+  setTimeout(() => {
+    bday.pause();
+    music.play();
+  }, 10000);
+
+  document.getElementById("proposal").style.display = "block";
+}
+
+// YES
+function yes() {
+  document.getElementById("final").style.display = "block";
+  document.getElementById("final").innerHTML = `
+    <h2>💖 I Love You Princy 💖</h2>
+    <p>You are my happiness ❤️</p>
+    <p>— Manuvendra Kumar Gupta</p>
+  `;
+}
+
+// NO BUTTON RUN
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.top = Math.random() * window.innerHeight + "px";
+  noBtn.style.left = Math.random() * window.innerWidth + "px";
+});
+
+// ❤️ Hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}, 400);
+
+</script>
+
+</body>
+</html>
